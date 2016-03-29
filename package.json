@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/nanhyunchul/decision-maker/issues"
   },
-  "homepage": "https://github.com/nanhyunchul/decision-maker#readme"
+  "homepage": "https://github.com/nanhyunchul/decision-maker#readme",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "cookie-parser": "^1.4.1",
+    "express": "^4.13.4"
+  }
 }
