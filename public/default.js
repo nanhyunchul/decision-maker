@@ -15,17 +15,17 @@ function showPictures() {
       var pictureOne = document.createElement('img');
       pictureOne.setAttribute('src', result[0]);
       pictureOne.setAttribute('class', 'img-responsive')
+      pictureOne.setAttribute('directory', '/picture');
 
       var pictureTwo = document.createElement('img');
       pictureTwo.setAttribute('src', result[1]);
       pictureTwo.setAttribute('class', 'img-responsive')
+      pictureTwo.setAttribute('directory', '/picture')
 
       var buttonOne = document.createElement('button');
-      buttonOne.setAttribute('directory', '/pictures');
       buttonOne.setAttribute('type', 'button');
 
       var buttonTwo = document.createElement('button');
-      buttonTwo.setAttribute('directory', '/pictures')
       buttonTwo.setAttribute('type', 'button');
 
       var firstPanel = document.createElement('div');
@@ -59,7 +59,7 @@ body.addEventListener('click', function(event) {
   event.preventDefault();
   var id = event.target.getAttribute('directory');
   if (id == '/picture') {
-    console.log(event);
     showPictures();
   }
+  console.log(event);
 });
