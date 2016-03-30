@@ -123,11 +123,15 @@ app.use(cookieParser());
 
 app.use(express.static('./public'));
 
+app.get('/login', function(req, res) {
+  res.cookie('username', 'testUser')
+  res.send()
+});
+
 app.get('/pictureOne', function(req, res) {
   var randomUser = userData[Math.floor(Math.random() * userData.length)];
   var randomPicture = randomUser.uploads[Math.floor(Math.random() * randomUser.uploads.length)];
   randomPicture.counter[0]++;
-  console.log(randomPicture.counter[0]);
   res.send(randomPicture);
 });
 
@@ -135,15 +139,21 @@ app.get('/pictureTwo', function(req, res) {
   var randomUser = userData[Math.floor(Math.random() * userData.length)];
   var randomPicture = randomUser.uploads[Math.floor(Math.random() * randomUser.uploads.length)];
   randomPicture.counter[1]++;
-  console.log(randomPicture.counter[1]);
   res.send(randomPicture);
 });
 
 app.get('/skip', function(req, res) {
   var randomUser = userData[Math.floor(Math.random() * userData.length)];
   var randomPicture = randomUser.uploads[Math.floor(Math.random() * randomUser.uploads.length)];
-  console.log(randomPicture.counter);
   res.send(randomPicture);
+});
+
+app.get('/myUploads', function(req, res) {
+  for (i = 0; i < userData.length; i++) {
+    if (req.cookies.username === userData[i].name) {
+      res.send(userData[i].uploads);
+    }
+  }
 });
 
 app.listen(8080, function() {
