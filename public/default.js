@@ -163,6 +163,30 @@ function showPicturesSkip() {
   })
 }
 
+function userUploads() {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', '/myUploads');
+  xhr.send();
+
+  xhr.addEventListener('load', function() {
+    result = JSON.parse(xhr.responseText);
+
+    if (i = 0; i < result.length; i++) {
+      var resultBox = document.createElement('div');
+      resultBox.setAttribute('class', 'col-md-6');
+
+      var resultTable = document.createElement('table');
+      resultTable.setAttribute('class', 'table');
+
+      var tableRow = document.createElement('tr');
+      var tableDataOne = document.createElement('td');
+      tableDataOne.setAttribute('align', 'center');
+      tableDataTwo.setAttribute('valign', 'center');
+      var tableDataTwo = document.createElement('td');
+    }
+  })
+}
+
 var body = document.body;
 body.addEventListener('click', function(event) {
   event.preventDefault();
