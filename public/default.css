@@ -35,3 +35,7 @@
 #skip {
   text-align: center;
 }
+
+.image-responsive {
+  width: 100%;
+}

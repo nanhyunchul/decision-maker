@@ -170,8 +170,9 @@ function userUploads() {
 
   xhr.addEventListener('load', function() {
     result = JSON.parse(xhr.responseText);
-
-    if (i = 0; i < result.length; i++) {
+    console.log(result);
+    for (i = 0; i < result.length; i++) {
+      var uploads = document.getElementById('uploads');
       var resultBox = document.createElement('div');
       resultBox.setAttribute('class', 'col-md-6');
 
@@ -181,8 +182,36 @@ function userUploads() {
       var tableRow = document.createElement('tr');
       var tableDataOne = document.createElement('td');
       tableDataOne.setAttribute('align', 'center');
-      tableDataTwo.setAttribute('valign', 'center');
+      tableDataOne.setAttribute('valign', 'center');
+
+      var imageOne = document.createElement('img');
+      imageOne.setAttribute('src', result[i].picture[0]);
+      imageOne.setAttribute('class', 'image-responsive');
+
+      var counterOne = document.createTextNode(result[i].counter[0]);
+
       var tableDataTwo = document.createElement('td');
+      tableDataTwo.setAttribute('align', 'center');
+      tableDataTwo.setAttribute('valign', 'center');
+
+      var imageTwo = document.createElement('img');
+      imageTwo.setAttribute('src', result[i].picture[1]);
+      imageTwo.setAttribute('class', 'image-responsive');
+
+      var counterTwo = document.createTextNode(result[i].counter[1]);
+
+      tableDataOne.appendChild(imageOne);
+      tableDataOne.appendChild(counterOne);
+
+      tableDataTwo.appendChild(imageTwo);
+      tableDataTwo.appendChild(counterTwo);
+
+      tableRow.appendChild(tableDataOne);
+      tableRow.appendChild(tableDataTwo);
+
+      resultBox.appendChild(tableRow);
+
+      uploads.appendChild(resultBox);
     }
   })
 }
@@ -199,5 +228,8 @@ body.addEventListener('click', function(event) {
   }
   if (id == '/skip') {
     showPicturesSkip();
+  }
+  if (id == '/myUploads') {
+    userUploads();
   }
 });
