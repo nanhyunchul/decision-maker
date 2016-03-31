@@ -1,12 +1,10 @@
-var imagePanel = document.getElementById('image-panel');
-imagePanel.setAttribute('id', 'images');
-
 function showPicturesOne() {
   var xhr = new XMLHttpRequest();
   xhr.open('GET', '/pictureOne');
   xhr.send();
 
   xhr.addEventListener('load', function() {
+    var imagePanel = document.getElementById('image-panel');
     var result = JSON.parse(xhr.responseText);
     var resultPicture = result.picture
     while (imagePanel.firstChild) {
@@ -61,6 +59,7 @@ function showPicturesTwo() {
   xhr.send();
 
   xhr.addEventListener('load', function() {
+    var imagePanel = document.getElementById('image-panel');
     var result = JSON.parse(xhr.responseText);
     var resultPicture = result.picture
     while (imagePanel.firstChild) {
@@ -115,6 +114,7 @@ function showPicturesSkip() {
   xhr.send();
 
   xhr.addEventListener('load', function() {
+    var imagePanel = document.getElementById('image-panel');
     var result = JSON.parse(xhr.responseText);
     var resultPicture = result.picture
     while (imagePanel.firstChild) {
@@ -233,3 +233,22 @@ body.addEventListener('click', function(event) {
     userUploads();
   }
 });
+
+//sliding navbar function //
+(function ($) {
+    'use strict';
+    // Toggle classes in body for syncing sliding animation with other elements
+    $('#bs-example-navbar-collapse-2')
+        .on('show.bs.collapse', function (e) {
+            $('body').addClass('menu-slider');
+        })
+        .on('shown.bs.collapse', function (e) {
+            $('body').addClass('in');
+        })
+        .on('hide.bs.collapse', function (e) {
+            $('body').removeClass('menu-slider');
+        })
+        .on('hidden.bs.collapse', function (e) {
+            $('body').removeClass('in');
+        });
+})(jQuery);
