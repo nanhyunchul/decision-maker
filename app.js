@@ -128,11 +128,19 @@ app.get('/login', function(req, res) {
   res.send()
 });
 
-app.get('/pictureOne', function(req, res) {
-  var randomUser = userData[Math.floor(Math.random() * userData.length)];
-  var randomPicture = randomUser.uploads[Math.floor(Math.random() * randomUser.uploads.length)];
-  randomPicture.counter[0]++;
-  res.send(randomPicture);
+app.get('/pictureOne', cookieParser(), function(req, res) {
+  function randomPick() {
+    return userData[Math.floor(Math.random() * userData.length)]
+  };
+  var randomUser = randomPick();
+  if (randomUser.name === req.cookies.username) {
+    randomUser = randomPick()
+  }
+  console.log(randomUser.name);
+  // var randomUser = userData[Math.floor(Math.random() * userData.length)];
+  // var randomPicture = randomUser.uploads[Math.floor(Math.random() * randomUser.uploads.length)];
+  // randomPicture.counter[0]++;
+  // res.send(randomPicture);
 });
 
 app.get('/pictureTwo', function(req, res) {
