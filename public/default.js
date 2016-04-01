@@ -13,19 +13,21 @@ function showPicturesOne() {
     if (xhr.status === 200) {
       var pictureOne = document.createElement('img');
       pictureOne.setAttribute('src', resultPicture[0]);
-      pictureOne.setAttribute('class', 'img-responsive')
+      pictureOne.setAttribute('class', 'img-responsive img-thumbnail padding-0 border-0')
       pictureOne.setAttribute('directory', '/pictureOne');
 
       var pictureTwo = document.createElement('img');
       pictureTwo.setAttribute('src', resultPicture[1]);
-      pictureTwo.setAttribute('class', 'img-responsive')
+      pictureTwo.setAttribute('class', 'img-responsive img-thumbnail padding-0 border-0')
       pictureTwo.setAttribute('directory', '/pictureTwo')
 
       var buttonOne = document.createElement('button');
       buttonOne.setAttribute('type', 'button');
+      buttonOne.setAttribute('class', 'padding-0 border-0');
 
       var buttonTwo = document.createElement('button');
       buttonTwo.setAttribute('type', 'button');
+      buttonTwo.setAttribute('class', 'padding-0 border-0');
 
       var firstPanel = document.createElement('div');
       firstPanel.setAttribute('class', 'col-md-5');
@@ -68,19 +70,21 @@ function showPicturesTwo() {
     if (xhr.status === 200) {
       var pictureOne = document.createElement('img');
       pictureOne.setAttribute('src', resultPicture[0]);
-      pictureOne.setAttribute('class', 'img-responsive')
+      pictureOne.setAttribute('class', 'img-responsive img-thumbnail padding-0 border-0')
       pictureOne.setAttribute('directory', '/pictureOne');
 
       var pictureTwo = document.createElement('img');
       pictureTwo.setAttribute('src', resultPicture[1]);
-      pictureTwo.setAttribute('class', 'img-responsive')
+      pictureTwo.setAttribute('class', 'img-responsive img-thumbnail padding-0 border-0')
       pictureTwo.setAttribute('directory', '/pictureTwo')
 
       var buttonOne = document.createElement('button');
       buttonOne.setAttribute('type', 'button');
+      buttonOne.setAttribute('class', 'padding-0 border-0');
 
       var buttonTwo = document.createElement('button');
       buttonTwo.setAttribute('type', 'button');
+      buttonTwo.setAttribute('class', 'padding-0 border-0');
 
       var firstPanel = document.createElement('div');
       firstPanel.setAttribute('class', 'col-md-5');
@@ -123,19 +127,21 @@ function showPicturesSkip() {
     if (xhr.status === 200) {
       var pictureOne = document.createElement('img');
       pictureOne.setAttribute('src', resultPicture[0]);
-      pictureOne.setAttribute('class', 'img-responsive')
+      pictureOne.setAttribute('class', 'img-responsive img-thumbnail padding-0 border-0')
       pictureOne.setAttribute('directory', '/pictureOne');
 
       var pictureTwo = document.createElement('img');
       pictureTwo.setAttribute('src', resultPicture[1]);
-      pictureTwo.setAttribute('class', 'img-responsive')
+      pictureTwo.setAttribute('class', 'img-responsive img-thumbnail padding-0 border-0')
       pictureTwo.setAttribute('directory', '/pictureTwo')
 
       var buttonOne = document.createElement('button');
       buttonOne.setAttribute('type', 'button');
+      buttonOne.setAttribute('class', 'padding-0 border-0');
 
       var buttonTwo = document.createElement('button');
       buttonTwo.setAttribute('type', 'button');
+      buttonTwo.setAttribute('class', 'padding-0 border-0');
 
       var firstPanel = document.createElement('div');
       firstPanel.setAttribute('class', 'col-md-5');
@@ -169,47 +175,98 @@ function userUploads() {
   xhr.send();
 
   xhr.addEventListener('load', function() {
-    result = JSON.parse(xhr.responseText);
-    console.log(result);
+    var uploads = document.getElementById('uploads');
+    var result = JSON.parse(xhr.responseText);
+    while (uploads.firstChild) {
+      uploads.removeChild(uploads.firstChild);
+    }
+
+    var uploadTextDiv = document.createElement('div');
+    uploadTextDiv.setAttribute('class', 'col-md-6 col-md-offset-3');
+
+    var uploadText = document.createElement('h2');
+    uploadText.textContent = 'My Upload History';
+
+    uploadTextDiv.appendChild(uploadText);
+    uploads.appendChild(uploadTextDiv);
+
     for (i = 0; i < result.length; i++) {
-      var uploads = document.getElementById('uploads');
       var resultBox = document.createElement('div');
-      resultBox.setAttribute('class', 'col-md-6');
+      resultBox.setAttribute('class', 'col-md-6 col-md-offset-3');
 
-      var resultTable = document.createElement('table');
-      resultTable.setAttribute('class', 'table');
+      var uploadPanel = document.createElement('div');
+      uploadPanel.setAttribute('class', 'panel panel-default space-30');
 
-      var tableRow = document.createElement('tr');
-      var tableDataOne = document.createElement('td');
-      tableDataOne.setAttribute('align', 'center');
-      tableDataOne.setAttribute('valign', 'center');
+      var uploadBody = document.createElement('div');
+      uploadBody.setAttribute('class', 'panel-body bottom-0');
+
+      var uploadFooter = document.createElement('div');
+      uploadFooter.setAttribute('class', 'panel-footer');
+
+      var imageTable = document.createElement('table');
+      imageTable.setAttribute('class', 'table bottom-margin-0');
+
+      var counterTable = document.createElement('table');
+      counterTable.setAttribute('class', 'table bottom-margin-0');
+
+
+      var imageTableRow = document.createElement('tr');
+      var counterTableRow = document.createElement('tr');
+
+      var imageTdOne = document.createElement('td');
+      imageTdOne.setAttribute('align', 'center');
+      imageTdOne.setAttribute('valign', 'center');
+
+      var counterTdOne = document.createElement('td');
+      counterTdOne.setAttribute('align', 'center');
+      counterTdOne.setAttribute('valign', 'center');
 
       var imageOne = document.createElement('img');
       imageOne.setAttribute('src', result[i].picture[0]);
-      imageOne.setAttribute('class', 'image-responsive');
+      imageOne.setAttribute('class', 'image-responsive thumbnail');
 
-      var counterOne = document.createTextNode(result[i].counter[0]);
+      var counterOne = document.createTextNode(result[i].counter[0] + ' ' + 'Votes');
 
-      var tableDataTwo = document.createElement('td');
-      tableDataTwo.setAttribute('align', 'center');
-      tableDataTwo.setAttribute('valign', 'center');
+      var imageTdTwo = document.createElement('td');
+      imageTdTwo.setAttribute('align', 'center');
+      imageTdTwo.setAttribute('valign', 'center');
+
+      var counterTdTwo = document.createElement('td');
+      counterTdTwo.setAttribute('align', 'center');
+      counterTdTwo.setAttribute('valign', 'center');
 
       var imageTwo = document.createElement('img');
       imageTwo.setAttribute('src', result[i].picture[1]);
-      imageTwo.setAttribute('class', 'image-responsive');
+      imageTwo.setAttribute('class', 'image-responsive thumbnail');
 
-      var counterTwo = document.createTextNode(result[i].counter[1]);
+      var counterTwo = document.createTextNode(result[i].counter[1] + ' ' + 'Votes');
 
-      tableDataOne.appendChild(imageOne);
-      tableDataOne.appendChild(counterOne);
+      imageTdOne.appendChild(imageOne);
+      counterTdOne.appendChild(counterOne);
 
-      tableDataTwo.appendChild(imageTwo);
-      tableDataTwo.appendChild(counterTwo);
+      counterTdOne.appendChild(counterOne);
 
-      tableRow.appendChild(tableDataOne);
-      tableRow.appendChild(tableDataTwo);
+      imageTdTwo.appendChild(imageTwo);
+      counterTdTwo.appendChild(counterTwo);
 
-      resultBox.appendChild(tableRow);
+      counterTdTwo.appendChild(counterTwo);
+
+      imageTableRow.appendChild(imageTdOne);
+      imageTableRow.appendChild(imageTdTwo);
+
+      counterTableRow.appendChild(counterTdOne);
+      counterTableRow.appendChild(counterTdTwo);
+
+      imageTable.appendChild(imageTableRow);
+      counterTable.appendChild(counterTableRow);
+
+      uploadBody.appendChild(imageTable);
+      uploadFooter.appendChild(counterTable);
+
+      uploadPanel.appendChild(uploadBody);
+      uploadPanel.appendChild(uploadFooter);
+
+      resultBox.appendChild(uploadPanel);
 
       uploads.appendChild(resultBox);
     }
