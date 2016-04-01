@@ -123,11 +123,6 @@ app.use(cookieParser());
 
 app.use(express.static('./public'));
 
-app.get('/login', function(req, res) {
-  res.cookie('username', 'testUser')
-  res.send()
-});
-
 app.get('/pictureOne', cookieParser(), function(req, res) {
   function randomPick() {
     return randomUser = userData[Math.floor(Math.random() * userData.length)];
@@ -170,6 +165,7 @@ app.get('/skip', function(req, res) {
   })();
   var randomUser = userData[Math.floor(Math.random() * userData.length)];
   var randomPicture = randomUser.uploads[Math.floor(Math.random() * randomUser.uploads.length)];
+  res.cookie('username', 'testUser')
   res.send(randomPicture);
 });
 

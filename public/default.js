@@ -33,7 +33,7 @@ function showPicturesOne() {
       firstPanel.setAttribute('class', 'col-md-5');
 
       var secondPanel = document.createElement('div');
-      secondPanel.setAttribute('class', 'col-md-5 col-md-offset-2');
+      secondPanel.setAttribute('class', 'col-md-5');
 
       var or = document.createElement('div');
       or.setAttribute('class', 'col-md-2 text-center');
@@ -90,7 +90,7 @@ function showPicturesTwo() {
       firstPanel.setAttribute('class', 'col-md-5');
 
       var secondPanel = document.createElement('div');
-      secondPanel.setAttribute('class', 'col-md-5 col-md-offset-2');
+      secondPanel.setAttribute('class', 'col-md-5');
 
       var or = document.createElement('div');
       or.setAttribute('class', 'col-md-2 text-center');
@@ -147,7 +147,7 @@ function showPicturesSkip() {
       firstPanel.setAttribute('class', 'col-md-5');
 
       var secondPanel = document.createElement('div');
-      secondPanel.setAttribute('class', 'col-md-5 col-md-offset-2');
+      secondPanel.setAttribute('class', 'col-md-5');
 
       var or = document.createElement('div');
       or.setAttribute('class', 'col-md-2 text-center');
