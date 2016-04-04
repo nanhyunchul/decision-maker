@@ -112,6 +112,16 @@ function showPicturesSkip() {
     var imagePanel = document.getElementById('image-panel');
     var result = JSON.parse(xhr.responseText);
     var resultPicture = result.randomPicture.picture;
+
+    console.log(result.userData[0].uploads.length);
+    var uploadsArray = []
+    for (i = 0; i < result.userData.length; i++) {
+      for (n = 0; n < result.userData[i].uploads.length; n++) {
+        uploadsArray.push(result.userData[i].uploads[n]);
+      }
+    }
+    console.log(uploadsArray);
+
     while (imagePanel.firstChild) {
       imagePanel.removeChild(imagePanel.firstChild);
     }
