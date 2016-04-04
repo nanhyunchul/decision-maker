@@ -58,6 +58,16 @@
   font-size: 50px;
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
+
+{
+  height: 100%;
+}
+
+#top-votes {
+  font-size: 30px;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
 /*sliding navbar css */
 /* Reset responsive Bootstrap elements */
 #navbar2 .navbar-header {

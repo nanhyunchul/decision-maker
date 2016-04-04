@@ -1,3 +1,6 @@
+var votePanel = document.getElementById('vote-panel');
+var uploads = document.getElementById('uploads');
+
 function showPicturesOne() {
   var xhr = new XMLHttpRequest();
   xhr.open('GET', '/pictureOne');
@@ -6,7 +9,7 @@ function showPicturesOne() {
   xhr.addEventListener('load', function() {
     var imagePanel = document.getElementById('image-panel');
     var result = JSON.parse(xhr.responseText);
-    var resultPicture = result.picture
+    var resultPicture = result.randomPicture.picture;
     while (imagePanel.firstChild) {
       imagePanel.removeChild(imagePanel.firstChild);
     }
@@ -30,15 +33,10 @@ function showPicturesOne() {
       buttonTwo.setAttribute('class', 'padding-0 border-0');
 
       var firstPanel = document.createElement('div');
-      firstPanel.setAttribute('class', 'col-md-5');
+      firstPanel.setAttribute('class', 'col-md-6');
 
       var secondPanel = document.createElement('div');
-      secondPanel.setAttribute('class', 'col-md-5');
-
-      var or = document.createElement('div');
-      or.setAttribute('class', 'col-md-2 text-center');
-      or.setAttribute('id', 'or')
-      or.textContent = 'OR';
+      secondPanel.setAttribute('class', 'col-md-6');
 
       buttonOne.appendChild(pictureOne);
       buttonTwo.appendChild(pictureTwo);
@@ -47,7 +45,6 @@ function showPicturesOne() {
       secondPanel.appendChild(buttonTwo);
 
       imagePanel.appendChild(firstPanel);
-      imagePanel.appendChild(or);
       imagePanel.appendChild(secondPanel);
     } else {
       alert('there was an error');
@@ -63,7 +60,7 @@ function showPicturesTwo() {
   xhr.addEventListener('load', function() {
     var imagePanel = document.getElementById('image-panel');
     var result = JSON.parse(xhr.responseText);
-    var resultPicture = result.picture
+    var resultPicture = result.randomPicture.picture;
     while (imagePanel.firstChild) {
       imagePanel.removeChild(imagePanel.firstChild);
     }
@@ -87,15 +84,10 @@ function showPicturesTwo() {
       buttonTwo.setAttribute('class', 'padding-0 border-0');
 
       var firstPanel = document.createElement('div');
-      firstPanel.setAttribute('class', 'col-md-5');
+      firstPanel.setAttribute('class', 'col-md-6');
 
       var secondPanel = document.createElement('div');
-      secondPanel.setAttribute('class', 'col-md-5');
-
-      var or = document.createElement('div');
-      or.setAttribute('class', 'col-md-2 text-center');
-      or.setAttribute('id', 'or')
-      or.textContent = 'OR';
+      secondPanel.setAttribute('class', 'col-md-6');
 
       buttonOne.appendChild(pictureOne);
       buttonTwo.appendChild(pictureTwo);
@@ -104,7 +96,6 @@ function showPicturesTwo() {
       secondPanel.appendChild(buttonTwo);
 
       imagePanel.appendChild(firstPanel);
-      imagePanel.appendChild(or);
       imagePanel.appendChild(secondPanel);
     } else {
       alert('there was an error');
@@ -120,7 +111,7 @@ function showPicturesSkip() {
   xhr.addEventListener('load', function() {
     var imagePanel = document.getElementById('image-panel');
     var result = JSON.parse(xhr.responseText);
-    var resultPicture = result.picture
+    var resultPicture = result.randomPicture.picture;
     while (imagePanel.firstChild) {
       imagePanel.removeChild(imagePanel.firstChild);
     }
@@ -144,15 +135,10 @@ function showPicturesSkip() {
       buttonTwo.setAttribute('class', 'padding-0 border-0');
 
       var firstPanel = document.createElement('div');
-      firstPanel.setAttribute('class', 'col-md-5');
+      firstPanel.setAttribute('class', 'col-md-6');
 
       var secondPanel = document.createElement('div');
-      secondPanel.setAttribute('class', 'col-md-5');
-
-      var or = document.createElement('div');
-      or.setAttribute('class', 'col-md-2 text-center');
-      or.setAttribute('id', 'or')
-      or.textContent = 'OR';
+      secondPanel.setAttribute('class', 'col-md-6');
 
       buttonOne.appendChild(pictureOne);
       buttonTwo.appendChild(pictureTwo);
@@ -161,7 +147,6 @@ function showPicturesSkip() {
       secondPanel.appendChild(buttonTwo);
 
       imagePanel.appendChild(firstPanel);
-      imagePanel.appendChild(or);
       imagePanel.appendChild(secondPanel);
     } else {
       alert('there was an error');
@@ -175,8 +160,12 @@ function userUploads() {
   xhr.send();
 
   xhr.addEventListener('load', function() {
-    var uploads = document.getElementById('uploads');
+    // var uploads = document.getElementById('uploads');
     var result = JSON.parse(xhr.responseText);
+
+    votePanel.classList.add('hidden');
+    uploads.classList.remove('hidden');
+
     while (uploads.firstChild) {
       uploads.removeChild(uploads.firstChild);
     }
@@ -273,6 +262,19 @@ function userUploads() {
   })
 }
 
+function mainPage() {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', '/main');
+  xhr.send();
+
+  xhr.addEventListener('load', function() {
+    if (xhr.status == 200) {
+      votePanel.classList.remove('hidden');
+      uploads.classList.add('hidden');
+    }
+  })
+}
+
 var body = document.body;
 body.addEventListener('click', function(event) {
   event.preventDefault();
@@ -288,6 +290,9 @@ body.addEventListener('click', function(event) {
   }
   if (id == '/myUploads') {
     userUploads();
+  }
+  if (id == '/main') {
+    mainPage();
   }
 });
 

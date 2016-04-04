@@ -16,12 +16,12 @@
               <span class="sr-only">Toggle navigation</span>
               <span id="loggedin-user">Username</span>
             </button>
-            <a class="navbar-brand">THIS or THAT?</a>
+            <a class="navbar-brand"><b>THIS or THAT?<b></a>
           </div>
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
             <ul class="nav navbar-nav">
+              <li><a href="#" directory="/main">Vote Page</a></li>
               <li><a href="#" directory="/myUploads">View My Uploads</a></li>
-              <li><a href="#">View My Votes</a></li>
               <li><a href="#" directory="/logout">Sign Out</a></li>
             </ul>
           </div>
@@ -137,18 +137,47 @@
           </div>
         </div>
       </div>
-      <div class="container">
-        <div class="row" id="image-panel">
-        </div>
+      <div class="container-fluid" id="vote-panel">
         <div class="row">
-          <div class="col-md-12" id="skip">
+          <div class="col-md-3" id="top-panel">
+            <div class="col-md-12" id="top-votes">
+              Top Votes
+            </div>
+            <div class="col-md-12">
+              <div class="panel panel-default">
+                <div class="panel-body bottom-0">
+                  <table class="table bottom-margin-0">
+                    <tr>
+                      <td align="center" valign="center">
+                        <img class="image-responsive" src="http://cdn.theatlantic.com/assets/media/img/photo/2015/11/images-from-the-2016-sony-world-pho/s01_130921474920553591/main_900.jpg?1448476701">
+                      </td>
+                      <td align="center" valign="center">
+                        <img class="image-responsive" src="http://cdn.theatlantic.com/assets/media/img/photo/2015/11/images-from-the-2016-sony-world-pho/s01_130921474920553591/main_900.jpg?1448476701">
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+                <div class="panel-footer">
+                  <table class="table bottom-margin-0">
+                    <tr>
+                      <td align="center" valign="center">1</td>
+                      <td align="center" valign="center">1</td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-9" id="skip">
             <button class="btn btn-default" type="button" directory="/skip">
-              Skip this one!
+              Show me pictures
             </button>
+          </div>
+          <div class="col-md-9 space-30" id="image-panel">
           </div>
         </div>
       </div>
-      <div class="container">
+      <div class="container-fluid">
         <div class="row" id="uploads">
         </div>
       </div>
